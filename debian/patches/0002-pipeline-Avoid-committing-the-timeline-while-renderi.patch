@@ -1,0 +1,66 @@
+From: Thibault Saunier <tsaunier@igalia.com>
+Date: Mon, 11 Jan 2021 17:50:26 -0300
+Subject: pipeline: Avoid committing the timeline while rendering
+
+This can cause weird behavior and in particular it can lead to
+de-synchronized audio/video streams.
+
+Fixes https://gitlab.gnome.org/GNOME/pitivi/-/issues/2498
+---
+ pitivi/editorperspective.py | 3 +++
+ pitivi/utils/pipeline.py    | 8 ++++----
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/pitivi/editorperspective.py b/pitivi/editorperspective.py
+index a25450c..49cbf61 100644
+--- a/pitivi/editorperspective.py
++++ b/pitivi/editorperspective.py
+@@ -128,6 +128,9 @@ class EditorPerspective(Perspective, Loggable):
+             # Nothing to work with, Pitivi is starting up.
+             return
+ 
++        if self.app.project_manager.current_project.pipeline.rendering():
++            return
++
+         # Commit the timeline so its nested timelines assets are refreshed.
+         ges_timeline.commit()
+ 
+diff --git a/pitivi/utils/pipeline.py b/pitivi/utils/pipeline.py
+index 95be106..c92c880 100644
+--- a/pitivi/utils/pipeline.py
++++ b/pitivi/utils/pipeline.py
+@@ -424,7 +424,7 @@ class SimplePipeline(GObject.Object, Loggable):
+             Gst.debug_bin_to_dot_file_with_ts(self._pipeline,
+                                               Gst.DebugGraphDetails.ALL,
+                                               "pitivi.error")
+-            if not self._rendering():
++            if not self.rendering():
+                 self._remove_waiting_for_async_done_timeout()
+                 self._recover()
+         elif message.type == Gst.MessageType.DURATION_CHANGED:
+@@ -498,7 +498,7 @@ class SimplePipeline(GObject.Object, Loggable):
+             raise PipelineError("Couldn't get duration: Returned None")
+         return dur
+ 
+-    def _rendering(self):
++    def rendering(self):
+         return False
+ 
+ 
+@@ -611,7 +611,7 @@ class Pipeline(GES.Pipeline, SimplePipeline):
+             # Nowhere to seek.
+             return
+ 
+-        if self._rendering():
++        if self.rendering():
+             raise PipelineError("Trying to seek while rendering")
+ 
+         st = Gst.Structure.new_empty("seek")
+@@ -675,6 +675,6 @@ class Pipeline(GES.Pipeline, SimplePipeline):
+             self._was_empty = True
+             self._remove_waiting_for_async_done_timeout()
+ 
+-    def _rendering(self):
++    def rendering(self):
+         mask = GES.PipelineFlags.RENDER | GES.PipelineFlags.SMART_RENDER
+         return self._pipeline.get_mode() & mask != 0

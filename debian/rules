@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/default.mk
+
+export MAKE = ninja -v
+
+configure_flags += \
+		--disable-silent-rules \
+		$(NULL)
+
+%:
+	dh $@ --with python3 --without pysupport
+
+override_dh_python3:
+	dh_python3
+	dh_python3 /usr/lib/$(DEB_TARGET_MULTIARCH)/pitivi/python/pitivi
+
+override_dh_auto_configure:
+	mkdir -p deb-build && meson --buildtype plain --prefix /usr . deb-build
+
+override_dh_auto_build:
+	$(MAKE) -C deb-build all
+
+override_dh_auto_clean:
+	rm -rf deb-build
+	dh_auto_clean
+
+override_dh_auto_install:
+	DESTDIR=$(CURDIR)/debian/pitivi $(MAKE) -C deb-build install
+	dh_auto_install

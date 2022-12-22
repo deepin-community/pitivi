@@ -1,0 +1,697 @@
+pitivi (2020.09.2-3) unstable; urgency=medium
+
+  * debian/patches/0002-pipeline-Avoid-committing-the-timeline-while-renderi.patch:
+    + Fix audio/video sync being broken in rendered videos (Closes: #985358).
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 05 Apr 2021 10:31:38 +0300
+
+pitivi (2020.09.2-2) unstable; urgency=medium
+
+  * debian/control:
+    + Add missing dependency on python3-ges-1.0.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 19 Nov 2020 00:15:48 +0200
+
+pitivi (2020.09.2-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 26 Oct 2020 09:18:51 +0200
+
+pitivi (2020.09.1-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+  * Add dependency on gir1.2-gst-plugins-bad-1.0 (Closes: #971741, #971949).
+  * Add dependency on gir1.2-peas-1.0 (Closes: #971981).
+  * Make the build reproducible (Closes: #972077).
+    Thanks to Chris Lamb for the patch.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 06 Oct 2020 12:18:28 +0300
+
+pitivi (2020.09-1) unstable; urgency=medium
+
+  [ Gianfranco Costamagna ]
+  * Drop comments on old patch
+  * Update VCS fields to new salsa.d.o location
+  * Drop old and useless X-Python-Version
+  * Bump std-version to 4.5.0, no changes required
+  * Bump compat level to 13
+  * Switch watch file to https secure mode
+  * Bump watch file to version 4 and fix regex to find the new version
+  * Move copyright to LGPL-2.1+, matching upstream COPYING file
+  * Add R^3: no in control file
+  * drop trailing space in changelog file
+  * No change rebuild against new gstreamer 1.18 (so transcoder embedded
+    dependency doesn't get built anymore) Closes: #965007
+    - cherry-pick and rebase upstream commit 51ae6533ee26ffd47e453eb5f5ad8cd46f57d15e
+    - add new build and runtime dependency on gstreamer1.0-plugins-bad-apps
+
+  [ Sebastian Dröge ]
+  * New upstream release (Closes: #956002, #965007).
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 06 Oct 2020 09:10:13 +0300
+
+pitivi (0.999-2) unstable; urgency=medium
+
+  [ Gianfranco Costamagna ]
+  * debian/patches/9fc400ca6f3f59fd2b2abfb8e39f0cf7a4031e09.patch,
+    debian/patches/0a3cc054a2c20b59f5aaaaa307de3c9af3c0d270.patch:
+    + Cherry-pick upstream fixes for python3.8 (Closes: #951779).
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 21 Feb 2020 18:59:53 +0100
+
+pitivi (0.999-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Drop superfluous gnome-doc-utils build-dep (Closes: #947537)
+  * debian/rules: drop include /usr/share/python/python.mk
+    - there package previously relied on gnome-doc-utils to pull in python2,
+      but rather than add python2 build-dep remove the include as it seems
+      unused.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 07 Feb 2020 19:01:06 +0100
+
+pitivi (0.999-1) unstable; urgency=medium
+
+  * debian/control:
+    + Add gir1.2-gsound-1.0 to Suggests. It can be used for sound
+    notifications but is optional (Closes: #895382).
+  * New upstream bugfix release:
+    + debian/control:
+      - (Build-)depend on GStreamer 1.14.2.
+    + debian/patches/0001-Don-t-require-gst-validate-to-be-available.patch:
+      - Dropped, merged upstream.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 07 Sep 2018 17:01:24 +0300
+
+pitivi (0.99-3) unstable; urgency=medium
+
+  * debian/control:
+    + Depend on gstreamer1.0-gtk3 (Closes: #894439).
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 30 Mar 2018 15:46:01 +0300
+
+pitivi (0.99-2) unstable; urgency=medium
+
+  * debian/patches/0001-Don-t-require-gst-validate-to-be-available.patch:
+    + Don't require gst-validate to be available (Closes: #876607)
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 24 Sep 2017 09:46:35 +0300
+
+pitivi (0.99-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 23 Sep 2017 14:28:52 +0300
+
+pitivi (0.98.1-3) unstable; urgency=medium
+
+  * Merge 0.98-1.1 NMU; thanks Laurent Bigonville!
+
+ -- Loïc Minier <lool@debian.org>  Tue, 11 Jul 2017 12:00:36 +0200
+
+pitivi (0.98.1-2) unstable; urgency=medium
+
+  * Add Vcs-Git and Vcs-Browser fields
+  * Bump Standards-Version to 4.0.0
+  * Replace me with Sebastian Dröge as Maintainer
+
+ -- Loïc Minier <lool@debian.org>  Mon, 10 Jul 2017 12:26:23 +0200
+
+pitivi (0.98.1-1) unstable; urgency=medium
+
+  * New upstream bugfix release (Closes: #825150).
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 10 Jul 2017 09:56:41 +0300
+
+pitivi (0.98-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Remove gnome-icon-theme from the dependencies, it is obsolete and has been
+    replaced by adwaita-icon-theme for GTK3 applications. (Closes: #831048)
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 28 Dec 2016 22:30:34 +0100
+
+pitivi (0.98-1) unstable; urgency=medium
+
+  * New upstream release:
+    + Update build-dependencies.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 07 Dec 2016 21:05:53 +0200
+
+pitivi (0.97.1-1) unstable; urgency=medium
+
+  * New upstream release:
+    + Update build-dependencies.
+    + Switch from autotools to meson build system.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 09 Aug 2016 10:05:56 +0200
+
+pitivi (0.95-1) unstable; urgency=medium
+
+  * New upstream release:
+    + Removes gnonlin dependency and replaces it with GES (Closes: #804510)
+  * debian/control:
+    + Remove unneeded Clutter dependencies (Closes: #788617)
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 20 Nov 2015 11:35:02 +0200
+
+pitivi (0.94-4) unstable; urgency=medium
+
+  * debian/rules,
+    debian/control:
+    + Fixup python packaging to generate the correct dependencies and
+      not ship any cache files (Closes: #799677).
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 25 Sep 2015 13:36:50 +0200
+
+pitivi (0.94-3) unstable; urgency=medium
+
+  [ Larissa Reis ]
+  * Non-maintainer upload.
+  * Removes deprecated python-support disabling it with `without` in rules file (Closes: #786029)
+  * Explicitly build-depends on dh-python
+
+  [ Sebastian Dröge ]
+  * Upload to unstable.
+
+ -- Larissa Reis <larissa@colivre.coop.br>  Tue, 18 Aug 2015 13:39:19 -0300
+
+pitivi (0.94-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 13 May 2015 12:32:13 +0300
+
+pitivi (0.94-1) experimental; urgency=medium
+
+  * New upstream release:
+    + debian/control:
+      - Update (build-) depends.
+    + debian/patches/*:
+      - Removed, merged upstream.
+    + debian/patches/01_disable-devel-mode.patch:
+      - Refreshed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 10 Nov 2014 16:44:00 +0100
+
+pitivi (0.93-4.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Import Ubuntu patches to fix issues (Closes: #763961) (Closes: #760710)
+    - 0001-work-around-fix-crash-in-non-GNOME-Shell-WMs.-timeli.patch
+    - 0002-project-Fix-setting-of-restriction-caps-values.patch
+      + Use set_value, not assignment as GstStructure doesn't support the
+        latter.
+    - 0005-pitivi-Start-using-glimagesink-as-default-sink.patch
+    - 0006-pipeline-Reimplement-connectWithViewer-for-glimagesi.patch
+      + Use glimagesink instead of cluttersink which resolves serious
+        rendering problems with the preview window.
+        > Depend on gstreamer1.0-plugins-bad for this.
+
+ -- Timo Jyrinki <timo@debian.org>  Wed, 29 Oct 2014 12:06:05 +0200
+
+pitivi (0.93-4.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Apply upstream patches to remove dependency on Cogl (Closes: #747009)
+
+ -- Antonio Terceiro <terceiro@debian.org>  Thu, 04 Sep 2014 18:41:31 -0300
+
+pitivi (0.93-4) unstable; urgency=medium
+
+  * debian/control:
+    + Add dependency on python-gi-cairo (Closes: #743825).
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 25 Apr 2014 11:04:09 +0200
+
+pitivi (0.93-3) unstable; urgency=medium
+
+  * debian/control:
+    + Depend on python-gi (>= 3.10), older versions do not work
+      with pitivi (Closes: #732813).
+    + Add missing dependency on gir1.2-clutter-gst-2.0 (Closes: #743692).
+    + Add suggests on gir1.2-notify-0.7 and gir1.2-gnomedesktop-3.0.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 05 Apr 2014 15:28:16 +0200
+
+pitivi (0.93-2) unstable; urgency=medium
+
+  * debian/patches/01_disable-devel-mode.patch:
+    + Fix typo in patch.
+  * Upload to unstable.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 29 Mar 2014 15:35:00 +0100
+
+pitivi (0.93-1) experimental; urgency=medium
+
+  * New upstream release candidate.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 29 Mar 2014 15:22:50 +0100
+
+pitivi (0.92-1) experimental; urgency=low
+
+  * New upstream release candidate.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 04 Nov 2013 20:38:20 +0100
+
+pitivi (0.91-1) experimental; urgency=low
+
+  * New upstream release candidate.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 01 Nov 2013 10:22:08 +0100
+
+pitivi (0.15.2-0.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Convert to dh_python2 (Closes: #616940).
+
+ -- Luca Falavigna <dktrkranz@debian.org>  Sat, 01 Jun 2013 14:42:05 +0200
+
+pitivi (0.15.2-0.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream release (Closes: #673547)
+  - Fixes compatibility with newer GStreamer good plugins
+  * Raise python-gtk dep to 2.24 (Closes: #664278)
+
+ -- Timo Jyrinki <timo@debian.org>  Tue, 12 Jun 2012 11:20:41 +0300
+
+pitivi (0.15.0-1) unstable; urgency=low
+
+  * New upstream release:
+    + debian/control:
+      - Update python-gtk2 dependency to >= 2.17.
+      - Update gstreamer0.10-gnonlin dependency to >= 0.10.17.
+      - Add Recommends for python-numpy for the autoaligner.
+      - Build-depend on gnome-doc-utils >= 0.18.0.
+      - Build-depend on pkg-config.
+    + debian/patches/01_disable-devel-mode.patch:
+      - Updated to apply cleanly again
+    + debian/rules:
+      - Don't abort the build if there are no files with a shebang
+        that have to get the executable bit set.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 28 Sep 2011 19:15:10 +0200
+
+pitivi (0.14.0-2) unstable; urgency=low
+
+  * debian/control:
+    + Remove hal dependency.
+    + Add python-xdg dependency and depend on python-gtk2 >= 2.18.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 01 Jun 2011 18:53:10 +0200
+
+pitivi (0.14.0-1) unstable; urgency=low
+
+  * New upstream stable release, "no longer kills kittens".
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 01 Jun 2011 18:40:47 +0200
+
+pitivi (0.13.9.90-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Suggest frei0r-plugins for more useful effect plugins.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 25 May 2011 20:22:33 +0200
+
+pitivi (0.13.5-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 09 Feb 2011 15:45:42 +0100
+
+pitivi (0.13.5-1) experimental; urgency=low
+
+  * New upstream release, "I Missed My Lunch".
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 16 Sep 2010 18:02:21 +0200
+
+pitivi (0.13.4.3-1) experimental; urgency=low
+
+  * New upstream pre-release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 11 Sep 2010 18:34:07 +0200
+
+pitivi (0.13.4.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/patches/02_uri-sink-async.patch:
+      - Dropped, merged upstream.
+    + debian/control:
+      - Update python-gst0.10 dependency to >= 0.10.19.
+    + debian/patches/01_disable-devel-mode.patch:
+      - Refreshed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 08 Sep 2010 21:19:51 +0200
+
+pitivi (0.13.4-3) unstable; urgency=low
+
+  * debian/control,
+    debian/source/format,
+    debian/compat,
+    debian/rules,
+    debian/patches:
+    + Update to source format 3.0 (quilt).
+    + Update to debhelper compat level 7.
+    + Update to standards version 3.9.0.
+  * debian/patches/02_uri-sink-async.patch:
+    + Patch from upstream GIT to fix encoding with encoders
+      that produce latency, e.g. VP8, x264 or Dirac.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 09 Jul 2010 10:24:40 +0200
+
+pitivi (0.13.4-2) unstable; urgency=low
+
+  * debian/control:
+    + Suggest some more GStreamer plugin packages.
+    + Depend on the X video sink or any other video sink.
+    + Depend on the PulseAudio audio sink or any other audio sink (Closes: #526079).
+  * debian/patches/01_disable-devel-mode.patch:
+    + Disable the development mode (Closes: #556851).
+      Thanks to Serafeim Zanikolas for the patch.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 14 Mar 2010 20:33:03 +0100
+
+pitivi (0.13.4-1) unstable; urgency=low
+
+  * New upstream stable release, "Cabernet d'Anjou":
+    + debian/control:
+      - Update dependencies.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 12 Mar 2010 08:51:29 +0000
+
+pitivi (0.13.3.2-1) unstable; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update dependencies.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 10 Mar 2010 07:05:18 +0000
+
+pitivi (0.13.3-2) unstable; urgency=low
+
+  * debian/control:
+    + Only depend on python-pkg-resources and not
+      python-setuptools (Closes: #546440).
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 13 Sep 2009 19:02:17 +0200
+
+pitivi (0.13.3-1) unstable; urgency=low
+
+  * New upstream release, '... we shall never (sur)render'.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 12 Sep 2009 13:04:09 +0200
+
+pitivi (0.13.2.4-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update dependencies.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 08 Sep 2009 16:50:20 +0200
+
+pitivi (0.13.2.3-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update dependencies.
+  * debian/control:
+    + Depend on python-zope.interface | python-zope-interface instead
+      of only python-zope-interface (Closes: #543421)
+    + Depend on python-gconf instead of python-gnome2 which will go away.
+      Also pitivi only uses the gconf module so this keeps dependencies
+      a bit smaller (Closes: #541577).
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 02 Sep 2009 18:20:39 +0200
+
+pitivi (0.13.2.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update dependencies.
+  * debian/control:
+    + Update Standards-Version to 3.8.3.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 30 Aug 2009 15:49:52 +0200
+
+pitivi (0.13.2-1) unstable; urgency=low
+
+  * New upstream release, 'Jailbreak (out of deadlock city)'.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 13 Aug 2009 19:33:06 +0200
+
+pitivi (0.13.1.3-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update dependencies.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 05 Aug 2009 16:26:53 +0200
+
+pitivi (0.13.1.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update dependencies.
+  * debian/control:
+    + Update Standards-Version to 3.8.2.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 24 Jul 2009 18:43:26 +0200
+
+pitivi (0.13.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 27 May 2009 14:22:49 +0200
+
+pitivi (0.13.0.3-1) experimental; urgency=low
+
+  * New upstream pre-release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 25 May 2009 12:06:33 +0200
+
+pitivi (0.13.0.2-1) experimental; urgency=low
+
+  [ Alessandro Decina ]
+  * New upstream pre-release.
+
+  [ Sebastian Dröge ]
+  * Upload to experimental, based on the Ubuntu package.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 21 May 2009 20:33:54 +0200
+
+pitivi (0.11.3-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/control:
+    + Update Standards-Version to 3.8.1.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 21 May 2009 20:28:22 +0200
+
+pitivi (0.11.3-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 12 Dec 2008 10:22:29 +0100
+
+pitivi (0.11.2.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/control:
+      - Update build dependencies.
+      - Update gnonlin dependency version to 0.10.10.
+      - Depend on python-dbus.
+      - Recommend hal for the webcam support.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 04 Dec 2008 12:47:07 +0100
+
+pitivi (0.11.2-2) experimental; urgency=low
+
+  * debian/control:
+    + Add depends on python-pkg-resources. Thanks to Sjoerd Simons.
+    + Add depends on python-setuptools (Closes: #506581).
+    + Add depends on python-zope-interface (Closes: #506580).
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 10 Nov 2008 13:29:39 +0100
+
+pitivi (0.11.2-1) experimental; urgency=low
+
+  [ Loic Minier ]
+  * Depend on gnome-icon-theme, thanks Kai Hendry; closes: #453939.
+
+  [ Sebastian Dröge ]
+  * New upstream development release:
+    + debian/control:
+      - Add myself to Uploaders.
+      - Update dependencies.
+      - Update Standards-Version to 3.8.0.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 02 Nov 2008 17:10:14 +0100
+
+pitivi (0.10.3-1) unstable; urgency=low
+
+  * New upstream stable release.
+
+ -- Loic Minier <lool@dooz.org>  Thu, 31 May 2007 12:04:44 +0200
+
+pitivi (0.10.2.2-1) unstable; urgency=low
+
+  * New upstream pre-release.
+    - Drop useless build-deps as upstream doesn't check for runtime
+      requirements in configure.ac anymore.
+  * Add missing dep on python-cairo and fix versions of other deps.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 28 May 2007 17:06:27 +0200
+
+pitivi (0.10.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Loic Minier <lool@dooz.org>  Sat, 12 May 2007 12:20:46 +0200
+
+pitivi (0.10.2-1) experimental; urgency=low
+
+  * New upstream release, "A New Toy".
+    - Update contributors list in copyright.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 31 Jan 2007 15:32:37 +0100
+
+pitivi (0.10.1.3-1) experimental; urgency=low
+
+  * Bump up python-central build-dep to >= 0.5.10 to make lintian happy.
+  * New upstream pre-release.
+    - Target at experimental.
+    - Bump up build-deps to python-gst0.10 >= 0.10.6.1,
+      libgstreamer0.10-dev >= 0.10.8, gstreamer0.10-gnonlin-dev >= 0.10.6.1.
+    - Bump up deps to python-gst0.10 >= 0.10.6.1,
+      gstreamer0.10-gnonlin >= 0.10.6.1.
+    - Add a dep on python-gnome2 for the gconf bindings.
+    - Bump up python-gtk2-dev and python-glade2 build-deps to >= 2.10 as this
+      is required by these versions of python-gst0.10.
+  * New upstream pre-release.
+    - Bump down build-dep and dep on python-gst0.10 to >= 0.10.6.
+  * Bump up libgstreamer0.10-dev build-dep to >= 0.10.11 as this is required
+    by the version of libgstreamer-plugins-base0.10-0 pulled by the required
+    version of python-gst0.10 anyway.
+  * Bump up gstreamer0.10-gnonlin build-dep to the level of
+    gstreamer0.10-gnonlin-dev.
+  * Build-depend on libxml-parser-perl for intltool.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 29 Jan 2007 14:20:08 +0100
+
+pitivi (0.10.1-2) unstable; urgency=low
+
+  * Build-depend on gstreamer0.10-gnonlin, thanks Sebastian Dröge.
+
+ -- Loic Minier <lool@dooz.org>  Tue,  1 Aug 2006 08:15:16 +0200
+
+pitivi (0.10.1-1) unstable; urgency=low
+
+  * New upstream release, "Sister and friend".
+  * Update to new Python policy.
+    - Bump up debhelper build-dep to >= 5.0.37.2.
+    - Set Python compatibility level to 2.
+    - Add XB-Python-Version to pitivi.
+    - Add a python-central (>= 0.4.17) build-dep.
+    - Build-depend on cdbs (>= 0.4.43).
+    - Add a XS-Python-Version (current).
+    - Call dh_pycentral to fill XB-Python-Version and add a pycentral dep, and
+      swap the executable bit fixup with the dh_py* calls.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 30 Jul 2006 13:20:58 +0200
+
+pitivi (0.10.0-1) unstable; urgency=low
+
+  * New upstream release, "It's a birthday party".
+    - Drop python-gnome2-dev build-dep.
+      [debian/control]
+    - Bump libgstreamer0.10-dev build-dep to 0.10.4.
+      [debian/control]
+    - Bump gstreamer0.10-gnonlin-dev build-dep to 0.10.2.
+      [debian/control]
+    - Remove gstreamer0.10-gnomevfs and python-gnome2 from the deps of pitivi.
+      [debian/control]
+    - Update description with current description in Wiki and stop claiming
+      unsupported features.
+  * Fix typo in upstream URL. (Closes: #360810)
+    [debian/copyright]
+  * Add a depends on gstreamer0.10-x because Recommends are not pulled in
+    correctly. (Closes: #360812)
+    [debian/control]
+  * Move debhelper and cdbs to Build-Deps (arch dependent) for clean.
+    [debian/control]
+  * Bump up Standards-Version to 3.7.2.
+    [debian/control]
+
+ -- Loic Minier <lool@dooz.org>  Sat,  6 May 2006 20:46:48 +0200
+
+pitivi (0.9.9.2+cvs20060301-3) unstable; urgency=high
+
+  * The "Don't take drugs when packaging upload".
+  * Fix architecture.
+    - Switch from Architecture: any to all, doh!
+      [debian/control]
+    - Drop shlibs:Depends.
+      [debian/control]
+    - Switch from Build-Depends to Build-Depends-Indep.
+      [debian/control]
+  * Fix build-deps (note for self: don't rush uploading a CVS snapshot).
+    - Add a python-cairo-dev (>= 1.0.0) build-dep-indep, thanks Bastian
+      Blank. (Closes: #360052)
+      [debian/control]
+  * Set the executable bit on the Python classes with a shebang to make
+    lintian happy.
+    [debian/rules]
+
+ -- Loic Minier <lool@dooz.org>  Thu, 30 Mar 2006 13:43:08 +0200
+
+pitivi (0.9.9.2+cvs20060301-2) unstable; urgency=low
+
+  * Add dependencies on GStreamer packages shipping elements referenced
+    directly in the source: gstreamer0.10-gnomevfs,
+    gstreamer0.10-plugins-base, gstreamer0.10-plugins-good,
+    libgstreamer0.10-0. (Closes: #359635)
+    [debian/control]
+
+ -- Loic Minier <lool@dooz.org>  Tue, 28 Mar 2006 15:27:18 +0200
+
+pitivi (0.9.9.2+cvs20060301-1) unstable; urgency=low
+
+  * New upstream CVS snapshot.
+
+ -- Loic Minier <lool@dooz.org>  Sat,  4 Mar 2006 12:58:21 +0100
+
+pitivi (0.9.9.2-1) unstable; urgency=low
+
+  * Initial upload to Debian. (Closes: #291069)
+  * Set myself as the Maintainer.
+    [debian/control]
+  * Fix license to be LGPL and fix copyright holders for the Python version.
+    [debian/copyright]
+  * Add CDBS' utils.
+    [debian/rules]
+  * Drop version of the python-dev build-dep to build against 2.3.
+    [debian/control]
+  * Drop gettext build-dep.
+    [debian/control]
+  * Replace python-gnome2-dev by a python-gnome2 dep.
+    [debian/control]
+  * Tweak descriptions a bit.
+    [debian/control]
+
+ -- Loic Minier <lool@dooz.org>  Sun, 26 Feb 2006 20:28:02 +0100
+
+pitivi (0.9.9.2-0ubuntu2) dapper; urgency=low
+
+  * Rebuild.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Thu, 23 Feb 2006 10:42:08 +0100
+
+pitivi (0.9.9.2-0ubuntu1) dapper; urgency=low
+
+  * Initial release.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Sat,  4 Feb 2006 14:42:30 +0000
+

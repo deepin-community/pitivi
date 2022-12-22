@@ -1,0 +1,2 @@
+version=4
+https://ftp.gnome.org/pub/GNOME/sources/pitivi/([\d\.\.]+)/pitivi-(.*)\.(?:tgz|tbz2|tar\.(?:gz|bz2|xz))

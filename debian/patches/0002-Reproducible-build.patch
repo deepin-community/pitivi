@@ -1,0 +1,47 @@
+Description: Make the build reproducible
+Author: Chris Lamb <lamby@debian.org>
+Last-Update: 2020-10-12
+
+--- pitivi-2020.09.orig/bin/pitivi.in
++++ pitivi-2020.09/bin/pitivi.in
+@@ -35,7 +35,7 @@ CONFIGURED_GST_PLUGIN_PATH = '@CONFIGURE
+ CONFIGURED_GST_PLUGIN_SYSTEM_PATH = '@CONFIGURED_GST_PLUGIN_SYSTEM_PATH@'
+ LIBDIR = '@LIBDIR@'
+ DATADIR = '@DATADIR@'
+-BUILDDIR = '@BUILDDIR@'
++BUILDDIR = None
+ 
+ 
+ def _prepend_env_path(name, value):
+@@ -72,7 +72,7 @@ def _add_pitivi_path():
+     if os.path.exists(flatpak_gst_python_path):
+         gi.overrides.__path__.insert(0, flatpak_gst_python_path)
+     dir = os.path.dirname(os.path.abspath(__file__))
+-    if _in_devel():
++    if _in_devel() and BUILDDIR is not None:
+         root = os.path.split(dir)[0]
+         sys.path.append(BUILDDIR)
+     else:
+--- pitivi-2020.09.orig/pitivi/configure.py.in
++++ pitivi-2020.09/pitivi/configure.py.in
+@@ -41,7 +41,7 @@ APPNAME = '@PACKAGE_NAME@'
+ APPURL = 'http://www.pitivi.org/'
+ RELEASES_URL = 'http://pitivi.org/releases.txt'
+ APPMANUALURL_ONLINE = 'http://www.pitivi.org/manual'
+-BUILDDIR = '@BUILDDIR@'
++BUILDDIR = None
+ 
+ 
+ if in_devel():
+--- pitivi-2020.09.orig/tests/__init__.py
++++ pitivi-2020.09/tests/__init__.py
+@@ -54,7 +54,8 @@ def setup():
+         gi.overrides.__path__.insert(0, flatpak_gst_python_path)
+ 
+     # Make available the compiled C code.
+-    sys.path.append(configure.BUILDDIR)
++    if configure.BUILDDIR is not None:
++        sys.path.append(configure.BUILDDIR)
+ 
+     _prepend_env_paths(GST_PRESET_PATH=[os.path.join(pitivi_dir, "data", "videopresets"),
+                                         os.path.join(pitivi_dir, "data", "audiopresets")],
